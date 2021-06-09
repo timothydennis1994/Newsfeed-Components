@@ -86,6 +86,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'How I wish the would remake the last 2 seasons of GOT',
+    date: 'May 19, 2019',
+    firstParagraph: `Oh, how I loved "A Song of Ice and Fire". The books are magnificent. Political intrigue and murder, with plots so thick you would use it to make a stew. Sprinkled with enough mystical dabbling to make it fall into my favorite category of Fantasy.`,
+ 
+    secondParagraph: `I remember when I first found out about the t.v series from my friend. He was watching it when I went to pick him up, 5 minutes and I was hooked. He commented that it had been a few days since he heard from me next, and I replied that I had finished binging the first season and was ready for season 2 to air. I was there at the beginning, when it was still a low-key show that many didn't know existed. I stuck with it till the bitter end...`,
+ 
+    thirdParagraph: `The last 2 seasons felt rushed and undeveloped. The fact that it was well known that Benioff and Weiss were in a hurry to go produce a Star Wars tragedy, because putting the Mother of Dragons in space was horrific, not including the plot of said space "epic". The conquering of the seven kingdoms in a shortened season was a joke. They missed every crucial part that would have made for a real finale. Traveling 1500 miles every episode was just ludacris, and no, not the old school hip-hop legend luda...but absolutely ridiculous. I didn't mind Jon putting an end to a Crazy Lady, but I don;t think it was well done. Many of the 'epic' deaths we had been waiting for were very mellow-dramatic and prolonged that could've been better spent elsewhere. 
+    
+    needless to say, I have signed the petition and am willing to wish all my Birthday, Christmas and Fathers Day Presents towards a reunited 7 kingdoms cast with new directors...or more favorably the O.G's. `
   }
 ];
 
@@ -114,3 +125,51 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const articleData = document.querySelector('.articles');
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  const divElement = document.createElement('div')
+  const h2Element = document.createElement('h2')
+  const pDateElement = document.createElement('p')
+  const pElement1 = document.createElement('p')
+  const pElement2 = document.createElement('p')
+  const pElement3 = document.createElement('p')
+  const spanElement = document.createElement('span')
+
+  divElement.appendChild(h2Element)
+  divElement.appendChild(pDateElement)
+  divElement.appendChild(pElement1)
+  divElement.appendChild(pElement2)
+  divElement.appendChild(pElement3)
+  divElement.appendChild(spanElement)
+
+  divElement.classList.add('article')
+  pDateElement.classList.add('date')
+  spanElement.classList.add('expandButton')
+
+  h2Element.textContent = title
+  pDateElement.textContent = date
+  pElement1.textContent = firstParagraph
+  pElement2.textContent = secondParagraph
+  pElement3.textContent = thirdParagraph
+  spanElement.textContent = '+'
+
+  spanElement.addEventListener('click', () => {
+    divElement.classList.toggle('article-open')
+  })
+
+  return divElement
+}
+
+data.forEach(item => {
+  const newArticle = articleMaker(item)
+  articleData.append(newArticle)
+})
+
+
+
+
+  
+
+
+
